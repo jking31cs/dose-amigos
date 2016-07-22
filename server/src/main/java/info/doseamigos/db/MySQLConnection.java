@@ -14,6 +14,12 @@ public class MySQLConnection {
      * @return The connection to the DB.
      */
     public static Connection create() throws SQLException {
+        try {
+
+            Class.forName("com.mysql.jdbc.GoogleDriver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         return DriverManager.getConnection(
             "jdbc:mysql://104.196.57.95:3306/doseamigos?&useLegacyDatetimeCode=false&serverTimezone=UTC",
             "amigoDBUser",
